@@ -1,9 +1,8 @@
 name: run main.py
 
 on:
-  workflow_dispatch:
-  #schedule:
-   # - cron: '*/5 * * * *'
+  schedule:
+    - cron: '*/5 * * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,7 +34,7 @@ jobs:
           git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
         
       - name: push changes
-        uses: ad-m/github-push-action@v1
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main 
